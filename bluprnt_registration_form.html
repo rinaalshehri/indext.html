@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BluPrnt — Registration Form</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ── RESET & BASE ─────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:      #0A1628;
+    --deep:      #0D2B55;
+    --mid:       #1A4A8A;
+    --electric:  #2563EB;
+    --sky:       #60A5FA;
+    --ice:       #DBEAFE;
+    --gold:      #F59E0B;
+    --gold-l:    #FDE68A;
+    --cream:     #F8F5EF;
+    --white:     #FFFFFF;
+    --slate:     #94A3B8;
+    --dark-sl:   #475569;
+    --radius:    10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* ── BLUEPRINT GRID BACKGROUND ───────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px);
+    background-size: 56px 47px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── COVER / HERO ─────────────────────────────────────────── */
+  .hero {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26,48,96,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,48,96,0.5) 1px, transparent 1px);
+    background-size: 56px 47px;
+  }
+
+  .hero-circles {
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 500px;
+    height: 500px;
+    pointer-events: none;
+  }
+
+  .hero-circles::before {
+    content: '';
+    position: absolute;
+    width: 380px; height: 380px;
+    border: 1px solid rgba(37,99,235,0.3);
+    border-radius: 50%;
+    top: 20px; right: 20px;
+  }
+  .hero-circles::after {
+    content: '';
+    position: absolute;
+    width: 260px; height: 260px;
+    background: var(--deep);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 50%;
+    top: 80px; right: 80px;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 40px 56px;
+  }
+
+  .hero-bar {
+    width: 5px;
+    height: 120px;
+    background: var(--gold);
+    position: absolute;
+    left: 40px;
+    top: 64px;
+  }
+
+  .hero-logo {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(52px, 7vw, 80px);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 16px;
+    padding-left: 28px;
+  }
+
+  .hero-logo .blu { color: var(--white); }
+  .hero-logo .prnt { color: var(--gold); }
+
+  .hero-tagline {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--sky);
+    padding-left: 28px;
+    margin-bottom: 36px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── PROGRAM INTRO ───────────────────────────────────────── */
+  .intro-box {
+    background: rgba(13,43,85,0.7);
+    border: 1px solid rgba(37,99,235,0.25);
+    border-left: 4px solid var(--electric);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-top: 0;
+  }
+
+  .intro-box h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .intro-box p {
+    color: var(--ice);
+    font-size: 14.5px;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  .intro-box p:last-child { margin-bottom: 0; }
+
+  /* Journey steps */
+  .journey {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .journey-step {
+    background: rgba(37,99,235,0.12);
+    border: 1px solid rgba(37,99,235,0.3);
+    border-radius: 8px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .journey-step .step-num {
+    font-family: 'EB Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+
+  .journey-step .step-label {
+    font-size: 11.5px;
+    color: var(--sky);
+    font-weight: 500;
+    margin-top: 4px;
+    display: block;
+    line-height: 1.4;
+  }
+
+  /* Deliverables */
+  .deliverables {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .deliv-card {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .deliv-card .deliv-icon {
+    font-size: 18px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .deliv-card .deliv-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .deliv-card .deliv-desc {
+    font-size: 11px;
+    color: var(--slate);
+    line-height: 1.5;
+  }
+
+  /* Notice box */
+  .notice-box {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 16px;
+  }
+
+  .notice-box p {
+    font-size: 12.5px;
+    color: var(--gold-l);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .notice-box strong { color: var(--gold); }
+
+  /* ── MAIN FORM WRAPPER ───────────────────────────────────── */
+  .form-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* ── SECTION CARDS ───────────────────────────────────────── */
+  .section-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid rgba(37,99,235,0.12);
+    box-shadow: 0 4px 24px rgba(10,22,40,0.07);
+    margin-bottom: 28px;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-card:nth-child(1) { animation-delay: 0.05s; }
+  .section-card:nth-child(2) { animation-delay: 0.12s; }
+  .section-card:nth-child(3) { animation-delay: 0.19s; }
+  .section-card:nth-child(4) { animation-delay: 0.26s; }
+
+  .section-header {
+    background: var(--navy);
+    padding: 22px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26,48,96,0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,48,96,0.6) 1px, transparent 1px);
+    background-size: 32px 28px;
+  }
+
+  .section-header-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-num {
+    width: 36px; height: 36px;
+    background: var(--electric);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--sky);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  .section-body {
+    padding: 32px;
+  }
+
+  /* ── FORM FIELDS ─────────────────────────────────────────── */
+  .field-group {
+    margin-bottom: 24px;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .field-grid { grid-template-columns: 1fr; }
+    .form-wrapper { padding: 24px 20px 60px; }
+    .hero-inner { padding: 48px 24px 44px; }
+    .section-body { padding: 24px 20px; }
+    .hero-bar { left: 24px; }
+    .hero-logo, .hero-tagline { padding-left: 22px; }
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark-sl);
+    margin-bottom: 7px;
+    letter-spacing: 0.3px;
+  }
+
+  label .req { color: var(--electric); margin-left: 2px; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--navy);
+    background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--electric);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
+  }
+
+  textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232563EB' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  /* ── RADIO & CHECKBOX ────────────────────────────────────── */
+  .options-label {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    line-height: 1.5;
+    display: block;
+  }
+
+  .options-hint {
+    font-size: 12px;
+    color: var(--slate);
+    font-weight: 400;
+    display: block;
+    margin-top: 3px;
+  }
+
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    cursor: pointer;
+    padding: 11px 16px;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 8px;
+    transition: border-color 0.2s, background 0.2s;
+    user-select: none;
+  }
+
+  .option-item:hover {
+    border-color: var(--electric);
+    background: var(--ice);
+  }
+
+  .option-item input[type="radio"],
+  .option-item input[type="checkbox"] {
+    width: 18px; height: 18px;
+    min-width: 18px;
+    border: 2px solid #CBD5E1;
+    border-radius: 50%;
+    background: var(--white);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    margin-top: 1px;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .option-item input[type="checkbox"] { border-radius: 5px; }
+
+  .option-item input[type="radio"]:checked,
+  .option-item input[type="checkbox"]:checked {
+    border-color: var(--electric);
+    background: var(--electric);
+  }
+
+  .option-item input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 6px; height: 6px;
+    background: white;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  .option-item input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 10px; height: 6px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    top: 40%; left: 50%;
+    transform: translate(-50%,-50%) rotate(-45deg);
+  }
+
+  .option-item:has(input:checked) {
+    border-color: var(--electric);
+    background: var(--ice);
+  }
+
+  .option-text { font-size: 13.5px; color: var(--navy); line-height: 1.5; }
+
+  /* ── SCALE RATING ────────────────────────────────────────── */
+  .scale-wrap {
+    margin-top: 8px;
+  }
+
+  .scale-track {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .scale-btn {
+    width: 44px; height: 44px;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 8px;
+    background: var(--cream);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark-sl);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .scale-btn:hover { border-color: var(--electric); color: var(--electric); background: var(--ice); }
+  .scale-btn.active { background: var(--electric); border-color: var(--electric); color: white; }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--slate);
+  }
+
+  /* ── DIVIDER ─────────────────────────────────────────────── */
+  .field-divider {
+    border: none;
+    border-top: 1px solid #F1F5F9;
+    margin: 28px 0;
+  }
+
+  /* ── IKIGAI SECTION LABEL ────────────────────────────────── */
+  .ikigai-intro {
+    background: linear-gradient(135deg, rgba(13,43,85,0.06), rgba(37,99,235,0.04));
+    border-left: 4px solid var(--electric);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+
+  .ikigai-intro h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .ikigai-intro p {
+    font-size: 13px;
+    color: var(--dark-sl);
+    line-height: 1.65;
+  }
+
+  .ikigai-pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .ikigai-pillar {
+    padding: 10px 12px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .ikigai-pillar.love    { background: rgba(96,165,250,0.12); color: #1D4ED8; border: 1px solid rgba(96,165,250,0.3); }
+  .ikigai-pillar.good    { background: rgba(245,158,11,0.10); color: #92400E; border: 1px solid rgba(245,158,11,0.3); }
+  .ikigai-pillar.paid    { background: rgba(16,185,129,0.10); color: #065F46; border: 1px solid rgba(16,185,129,0.3); }
+  .ikigai-pillar.world   { background: rgba(139,92,246,0.10); color: #4C1D95; border: 1px solid rgba(139,92,246,0.3); }
+
+  /* ── CONSENT ─────────────────────────────────────────────── */
+  .consent-block {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .consent-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26,48,96,0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,48,96,0.6) 1px, transparent 1px);
+    background-size: 32px 28px;
+  }
+
+  .consent-block > * { position: relative; z-index: 1; }
+
+  .consent-block h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .consent-block p {
+    font-size: 13px;
+    color: var(--ice);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+
+  .consent-block p:last-of-type { margin-bottom: 0; }
+
+  .consent-block strong { color: var(--gold-l); }
+
+  .consent-list {
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  .consent-list li {
+    font-size: 12.5px;
+    color: var(--ice);
+    line-height: 1.6;
+    padding: 5px 0 5px 20px;
+    position: relative;
+  }
+
+  .consent-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--electric);
+    font-weight: 600;
+  }
+
+  /* Signature field */
+  .sig-wrap {
+    margin-top: 20px;
+  }
+
+  .sig-wrap label {
+    color: var(--sky);
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .sig-wrap input {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(37,99,235,0.4);
+    color: var(--white);
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    letter-spacing: 1px;
+  }
+
+  .sig-wrap input::placeholder { color: rgba(148,163,184,0.5); }
+  .sig-wrap input:focus {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
+  }
+
+  .sig-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--slate);
+  }
+
+  .sig-date span { color: var(--sky); }
+
+  /* ── CHECKBOX AGREE ──────────────────────────────────────── */
+  .agree-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    border: 1.5px solid rgba(37,99,235,0.25);
+    border-radius: 8px;
+    background: rgba(37,99,235,0.05);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .agree-item:hover {
+    border-color: var(--electric);
+    background: rgba(37,99,235,0.1);
+  }
+
+  .agree-item input[type="checkbox"] {
+    width: 20px; height: 20px; min-width: 20px;
+    border: 2px solid rgba(37,99,235,0.4);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.08);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    margin-top: 1px;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .agree-item input[type="checkbox"]:checked {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .agree-item input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 11px; height: 7px;
+    border-left: 2.5px solid var(--navy);
+    border-bottom: 2.5px solid var(--navy);
+    top: 38%; left: 50%;
+    transform: translate(-50%,-50%) rotate(-45deg);
+  }
+
+  .agree-item:has(input:checked) {
+    border-color: var(--gold);
+    background: rgba(245,158,11,0.08);
+  }
+
+  .agree-text {
+    font-size: 13px;
+    color: var(--ice);
+    line-height: 1.6;
+  }
+
+  /* ── SUBMIT BUTTON ───────────────────────────────────────── */
+  .submit-wrap {
+    text-align: center;
+    margin-top: 36px;
+  }
+
+  .submit-btn {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 16px 56px;
+    border: 2px solid var(--electric);
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--electric);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 0;
+  }
+
+  .submit-btn:hover::before { transform: translateX(0); }
+  .submit-btn span { position: relative; z-index: 1; }
+
+  .submit-btn .arrow {
+    position: relative; z-index: 1;
+    transition: transform 0.2s;
+  }
+
+  .submit-btn:hover .arrow { transform: translateX(4px); }
+
+  .submit-note {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--slate);
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────── */
+  .form-footer {
+    text-align: center;
+    padding: 24px 40px 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-footer p {
+    font-size: 12px;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  .form-footer strong {
+    color: var(--dark-sl);
+    font-weight: 600;
+  }
+
+  .footer-logo {
+    font-family: 'EB Garamond', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .footer-logo .blu { color: var(--navy); }
+  .footer-logo .prnt { color: var(--gold); }
+
+  /* ── PROGRESS BAR ────────────────────────────────────────── */
+  .progress-bar-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    border-bottom: 1px solid rgba(37,99,235,0.2);
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .progress-logo {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .progress-logo .blu { color: white; }
+  .progress-logo .prnt { color: var(--gold); }
+
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--electric), var(--gold));
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  .progress-pct {
+    font-size: 12px;
+    color: var(--sky);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ── FIELD HINT ──────────────────────────────────────────── */
+  .field-hint {
+    font-size: 11.5px;
+    color: var(--slate);
+    margin-top: 5px;
+    line-height: 1.5;
+  }
+
+  /* ── SECTION TAG ─────────────────────────────────────────── */
+  .section-tag {
+    display: inline-block;
+    background: var(--electric);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- STICKY PROGRESS BAR -->
+<div class="progress-bar-wrap" id="progressBar">
+  <div class="progress-logo"><span class="blu">Blu</span><span class="prnt">Prnt</span></div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <div class="progress-pct" id="progressPct">0%</div>
+</div>
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-circles"></div>
+  <div class="hero-inner">
+    <div class="hero-bar"></div>
+    <div class="hero-logo"><span class="blu">Blu</span><span class="prnt">Prnt</span></div>
+    <div class="hero-tagline">Become the Blueprint of Your Career</div>
+
+    <div class="intro-box">
+      <h2>📋 About This Program</h2>
+      <p>
+        <strong style="color:var(--gold-l)">BluPrnt</strong> is a student-to-student mentorship initiative connecting freshmen and junior students with senior students and recent graduates in the <strong style="color:var(--gold-l)">Legal</strong> and <strong style="color:var(--gold-l)">Technology</strong> fields. Our mission is to give every student a personalized career blueprint — starting from their very first year.
+      </p>
+      <p>
+        This registration form is the first step in your journey. Based on your responses, we will carefully match you with a senior mentor, design your career path, and deliver a set of curated resources tailored to your track and goals.
+      </p>
+
+      <div style="margin: 18px 0 6px;">
+        <span class="section-tag">Your Journey</span>
+      </div>
+      <div class="journey">
+        <div class="journey-step">
+          <span class="step-num">01</span>
+          <span class="step-label">Register &amp; Fill This Form</span>
+        </div>
+        <div class="journey-step">
+          <span class="step-num">02</span>
+          <span class="step-label">Profile Review &amp; Mentor Matching</span>
+        </div>
+        <div class="journey-step">
+          <span class="step-num">03</span>
+          <span class="step-label">Receive Your Career Resources</span>
+        </div>
+        <div class="journey-step">
+          <span class="step-num">04</span>
+          <span class="step-label">Begin Mentorship Sessions</span>
+        </div>
+        <div class="journey-step">
+          <span class="step-num">05</span>
+          <span class="step-label">Build Your Blueprint</span>
+        </div>
+        <div class="journey-step">
+          <span class="step-num">06</span>
+          <span class="step-label">Land Your First Opportunity</span>
+        </div>
+      </div>
+
+      <div style="margin: 18px 0 6px;">
+        <span class="section-tag">What You'll Receive</span>
+      </div>
+      <div class="deliverables">
+        <div class="deliv-card">
+          <span class="deliv-icon">📊</span>
+          <span class="deliv-title">Job Opportunities Sheet</span>
+          <span class="deliv-desc">Curated Saudi job market roles, titles &amp; salary ranges for your track</span>
+        </div>
+        <div class="deliv-card">
+          <span class="deliv-icon">🏅</span>
+          <span class="deliv-title">Certifications Roadmap</span>
+          <span class="deliv-desc">Professional certifications recognized in Saudi Arabia for your career path</span>
+        </div>
+        <div class="deliv-card">
+          <span class="deliv-icon">🗺️</span>
+          <span class="deliv-title">Career Guidance Deck</span>
+          <span class="deliv-desc">Full presentation: from your current year to your first job offer</span>
+        </div>
+        <div class="deliv-card">
+          <span class="deliv-icon">🤝</span>
+          <span class="deliv-title">Senior Mentor Match</span>
+          <span class="deliv-desc">A dedicated senior student to guide, answer questions &amp; follow your journey</span>
+        </div>
+        <div class="deliv-card">
+          <span class="deliv-icon">📄</span>
+          <span class="deliv-title">CV &amp; Resume Templates</span>
+          <span class="deliv-desc">Track-specific CV templates crafted for your professional direction</span>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <p>
+          <strong>⚠️ Important Notice:</strong> All content, resources, and materials shared through BluPrnt are the exclusive intellectual property of BluPrnt. By submitting this form, you acknowledge that you may not resell, redistribute, monetize, or share any materials for commercial gain. All files shared within this program are tracked and digitally watermarked. Unauthorized distribution is a violation of these terms.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FORM ───────────────────────────────────────────────────── -->
+<div class="form-wrapper">
+<form id="mainForm" novalidate>
+
+  <!-- ═══ SECTION 1: CONTACT INFO ═══════════════════════════ -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-header-inner">
+        <div class="section-num">1</div>
+        <div>
+          <div class="section-title">Contact Information</div>
+          <div class="section-subtitle">Basic details so we can reach you and set up your profile</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="field-grid">
+        <div class="field-group">
+          <label for="fname">First Name <span class="req">*</span></label>
+          <input type="text" id="fname" name="fname" placeholder="e.g. Sara" required>
+        </div>
+        <div class="field-group">
+          <label for="lname">Last Name <span class="req">*</span></label>
+          <input type="text" id="lname" name="lname" placeholder="e.g. Al-Rashidi" required>
+        </div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field-group">
+          <label for="age">Age <span class="req">*</span></label>
+          <input type="number" id="age" name="age" placeholder="e.g. 19" min="16" max="35" required>
+        </div>
+        <div class="field-group">
+          <label for="city">City <span class="req">*</span></label>
+          <select id="city" name="city" required>
+            <option value="" disabled selected>Select your city</option>
+            <option>Riyadh</option>
+            <option>Jeddah</option>
+            <option>Dammam</option>
+            <option>Mecca</option>
+            <option>Medina</option>
+            <option>Khobar</option>
+            <option>Abha</option>
+            <option>Tabuk</option>
+            <option>Qassim</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="yourname@email.com" required>
+        <div class="field-hint">All resources and updates will be sent to this email. Please make sure it's active.</div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field-group">
+          <label for="university">University <span class="req">*</span></label>
+          <select id="university" name="university" required>
+            <option value="" disabled selected>Select your university</option>
+            <option>King Abdulaziz University (KAU)</option>
+            <option>King Fahd University (KFUPM)</option>
+            <option>King Saud University (KSU)</option>
+            <option>King Abdullah University (KAUST)</option>
+            <option>Imam Abdulrahman Bin Faisal University</option>
+            <option>Princess Nourah University</option>
+            <option>Effat University</option>
+            <option>Alfaisal University</option>
+            <option>Umm Al-Qura University</option>
+            <option>Taibah University</option>
+            <option>Qassim University</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label for="major">Major / Specialization <span class="req">*</span></label>
+          <input type="text" id="major" name="major" placeholder="e.g. Computer Science" required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="year">Academic Year <span class="req">*</span></label>
+        <select id="year" name="year" required>
+          <option value="" disabled selected>Select your current year</option>
+          <option>1st Year — Freshman</option>
+          <option>2nd Year — Sophomore</option>
+          <option>3rd Year — Junior</option>
+          <option>4th Year — Senior</option>
+          <option>5th Year+</option>
+          <option>Graduate Student</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2: CAREER PATH & IKIGAI ═══════════════════ -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-header-inner">
+        <div class="section-num">2</div>
+        <div>
+          <div class="section-title">Career Path & Professional Identity</div>
+          <div class="section-subtitle">Help us understand who you are professionally — we use the Ikigai model to design your blueprint</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <!-- IKIGAI EXPLAINER -->
+      <div class="ikigai-intro">
+        <h3>🎯 The Ikigai Approach</h3>
+        <p>
+          We use the <strong>Ikigai</strong> model — a Japanese philosophy that helps you find the intersection of what you <em>love</em>, what you're <em>good at</em>, what the <em>world needs</em>, and what you can be <em>paid for</em>. Your answers below will shape your personalized career blueprint.
+        </p>
+        <div class="ikigai-pillars">
+          <div class="ikigai-pillar love">💙 What you <strong>Love</strong></div>
+          <div class="ikigai-pillar good">💛 What you're <strong>Good At</strong></div>
+          <div class="ikigai-pillar world">💜 What the <strong>World Needs</strong></div>
+          <div class="ikigai-pillar paid">💚 What you can be <strong>Paid For</strong></div>
+        </div>
+      </div>
+
+      <!-- Q1: Track -->
+      <div class="field-group">
+        <span class="options-label">
+          Which track are you most interested in? <span class="req">*</span>
+          <span class="options-hint">Choose the one that feels closest to your direction right now</span>
+        </span>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="radio" name="track" value="legal" required>
+            <span class="option-text"><strong>⚖️ Legal Track</strong> — Pre-law, legal careers, public policy</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="track" value="tech_cyber">
+            <span class="option-text"><strong>🔐 Tech Track — Cybersecurity</strong> — Ethical hacking, security engineering, certs like Security+ &amp; CEH</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="track" value="tech_ai">
+            <span class="option-text"><strong>🤖 Tech Track — Artificial Intelligence</strong> — ML, data science, research, AI engineering</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="track" value="tech_biz">
+            <span class="option-text"><strong>💼 Tech Track — Business &amp; Project Management</strong> — Agile, product, startup, PM certifications</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="track" value="hybrid">
+            <span class="option-text"><strong>🔀 Hybrid Track — LegalTech &amp; Innovation</strong> — Where law meets technology</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="track" value="undecided">
+            <span class="option-text"><strong>🤷 Not Sure Yet</strong> — I need guidance to figure out my direction</span>
+          </label>
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- Q2: LOVE (Ikigai pillar 1) -->
+      <div class="field-group">
+        <span class="options-label">
+          💙 What activities or subjects genuinely excite you? <span class="req">*</span>
+          <span class="options-hint">Select all that apply — these represent what you <em>love</em></span>
+        </span>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="checkbox" name="love" value="problem_solving">
+            <span class="option-text">Solving complex problems and puzzles</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="love" value="building">
+            <span class="option-text">Building things — apps, products, systems</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="love" value="research">
+            <span class="option-text">Research, reading, and deep-diving into topics</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="love" value="helping">
+            <span class="option-text">Helping and advising people through challenges</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="love" value="leading">
+            <span class="option-text">Leading teams and organizing projects</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="love" value="creating">
+            <span class="option-text">Creating content, writing, and communication</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="love" value="justice">
+            <span class="option-text">Arguing cases, debating, and advocating for fairness</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="love" value="data">
+            <span class="option-text">Analyzing data and finding patterns</span>
+          </label>
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- Q3: GOOD AT (Ikigai pillar 2) -->
+      <div class="field-group">
+        <span class="options-label">
+          💛 What are you genuinely good at, or what comes naturally to you? <span class="req">*</span>
+          <span class="options-hint">Be honest — these are your natural strengths</span>
+        </span>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="checkbox" name="good_at" value="technical">
+            <span class="option-text">Technical skills — coding, systems, math</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="good_at" value="communication">
+            <span class="option-text">Communication, persuasion, and public speaking</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="good_at" value="strategic">
+            <span class="option-text">Strategic thinking and planning ahead</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="good_at" value="analytical">
+            <span class="option-text">Critical analysis and logical reasoning</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="good_at" value="creativity">
+            <span class="option-text">Creative thinking and generating new ideas</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="good_at" value="attention">
+            <span class="option-text">Attention to detail and thoroughness</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="good_at" value="empathy">
+            <span class="option-text">Empathy and understanding people's needs</span>
+          </label>
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- Q4: WORLD NEEDS (Ikigai pillar 3) -->
+      <div class="field-group">
+        <span class="options-label">
+          💜 What problems in the world do you most want to contribute to solving? <span class="req">*</span>
+          <span class="options-hint">Select what genuinely matters to you</span>
+        </span>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="checkbox" name="world" value="cybersecurity">
+            <span class="option-text">Protecting people and organizations from cyber threats</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="world" value="justice_access">
+            <span class="option-text">Making legal systems more accessible and fair</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="world" value="ai_ethics">
+            <span class="option-text">Ensuring AI is developed responsibly and ethically</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="world" value="innovation">
+            <span class="option-text">Driving innovation and building new technologies</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="world" value="economy">
+            <span class="option-text">Growing Saudi Arabia's economy and Vision 2030</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="world" value="education">
+            <span class="option-text">Improving education and knowledge sharing</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="world" value="policy">
+            <span class="option-text">Shaping policy and governance through technology</span>
+          </label>
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- Q5: PAID FOR (Ikigai pillar 4) -->
+      <div class="field-group">
+        <span class="options-label">
+          💚 What type of career environment do you see yourself thriving in? <span class="req">*</span>
+          <span class="options-hint">Think about your ideal professional life 5 years from now</span>
+        </span>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="radio" name="environment" value="corporate">
+            <span class="option-text">Large corporation or government entity (stable, structured)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="environment" value="startup">
+            <span class="option-text">Startup or entrepreneurship (fast-paced, creative)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="environment" value="research">
+            <span class="option-text">Research institution or academia</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="environment" value="freelance">
+            <span class="option-text">Freelance / consulting (independent, flexible)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="environment" value="nonprofit">
+            <span class="option-text">Non-profit or public sector (impact-driven)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="environment" value="unsure">
+            <span class="option-text">Not sure — I'm still exploring my options</span>
+          </label>
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- Q6: Current stage -->
+      <div class="field-group">
+        <span class="options-label">
+          Where would you describe yourself right now in terms of career clarity? <span class="req">*</span>
+        </span>
+        <div class="scale-wrap">
+          <div class="scale-track" id="clarityScale">
+            <button type="button" class="scale-btn" data-val="1" onclick="setScale('clarity',1)">1</button>
+            <button type="button" class="scale-btn" data-val="2" onclick="setScale('clarity',2)">2</button>
+            <button type="button" class="scale-btn" data-val="3" onclick="setScale('clarity',3)">3</button>
+            <button type="button" class="scale-btn" data-val="4" onclick="setScale('clarity',4)">4</button>
+            <button type="button" class="scale-btn" data-val="5" onclick="setScale('clarity',5)">5</button>
+            <button type="button" class="scale-btn" data-val="6" onclick="setScale('clarity',6)">6</button>
+            <button type="button" class="scale-btn" data-val="7" onclick="setScale('clarity',7)">7</button>
+            <button type="button" class="scale-btn" data-val="8" onclick="setScale('clarity',8)">8</button>
+            <button type="button" class="scale-btn" data-val="9" onclick="setScale('clarity',9)">9</button>
+            <button type="button" class="scale-btn" data-val="10" onclick="setScale('clarity',10)">10</button>
+          </div>
+          <div class="scale-labels">
+            <span>1 — Completely Lost</span>
+            <span>10 — Fully Planned</span>
+          </div>
+          <input type="hidden" id="clarityVal" name="career_clarity">
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- Q7: Goals -->
+      <div class="field-group">
+        <label for="goals">What is your main career goal for the next 2 years? <span class="req">*</span></label>
+        <textarea id="goals" name="goals" placeholder="e.g. I want to land an internship at a cybersecurity firm by my junior year and get my Security+ certification..." required></textarea>
+        <div class="field-hint">Be as specific as possible — this directly shapes your blueprint.</div>
+      </div>
+
+      <!-- Q8: Challenges -->
+      <div class="field-group">
+        <label for="challenges">What is the biggest challenge or obstacle you feel you're facing in your career journey right now?</label>
+        <textarea id="challenges" name="challenges" placeholder="e.g. I don't know which certifications to pursue, I'm unsure how to build a relevant portfolio..."></textarea>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- MENTOR PREFERENCES -->
+      <div style="margin-bottom:18px;">
+        <span class="section-tag">Mentor Preferences</span>
+        <div style="margin-top:8px; font-size:14px; color:var(--dark-sl); line-height:1.6;">
+          Help us match you with the right mentor. Your senior mentor is a student or recent graduate who has already navigated the path you're on.
+        </div>
+      </div>
+
+      <!-- Q9: Mentor gender -->
+      <div class="field-group">
+        <span class="options-label">Do you have a preference for your mentor's gender? <span class="req">*</span></span>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="radio" name="mentor_gender" value="male" required>
+            <span class="option-text">Male mentor preferred</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="mentor_gender" value="female">
+            <span class="option-text">Female mentor preferred</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="mentor_gender" value="no_preference">
+            <span class="option-text">No preference — match me based on expertise</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Q10: Mentor communication style -->
+      <div class="field-group">
+        <span class="options-label">
+          What communication style do you prefer with your mentor? <span class="req">*</span>
+          <span class="options-hint">Select all that apply</span>
+        </span>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="checkbox" name="comm_style" value="structured">
+            <span class="option-text">Structured sessions with a set agenda</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="comm_style" value="casual">
+            <span class="option-text">Casual conversations and open discussion</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="comm_style" value="whatsapp">
+            <span class="option-text">Mostly messaging (WhatsApp / Telegram)</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="comm_style" value="calls">
+            <span class="option-text">Voice or video calls</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="comm_style" value="inperson">
+            <span class="option-text">In-person meetings (if in the same city)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Q11: Frequency -->
+      <div class="field-group">
+        <span class="options-label">How often would you like to connect with your mentor? <span class="req">*</span></span>
+        <div class="options-list">
+          <label class="option-item">
+            <input type="radio" name="frequency" value="weekly" required>
+            <span class="option-text">Once a week</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="frequency" value="biweekly">
+            <span class="option-text">Every two weeks</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="frequency" value="monthly">
+            <span class="option-text">Once a month</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="frequency" value="asneeded">
+            <span class="option-text">As needed / when I have questions</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Q12: Anything else -->
+      <div class="field-group">
+        <label for="extra">Is there anything specific you'd like your mentor to help you with?</label>
+        <textarea id="extra" name="extra" placeholder="e.g. I really need help deciding whether to pursue a Master's degree or go straight into the industry after graduation..."></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 3: CONSENT & SIGNATURE ════════════════════ -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-header-inner">
+        <div class="section-num">3</div>
+        <div>
+          <div class="section-title">Terms, Consent &amp; Signature</div>
+          <div class="section-subtitle">Please read carefully before signing — this is a binding agreement</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="consent-block">
+        <h3>📜 Intellectual Property &amp; Usage Agreement</h3>
+        <p>
+          By submitting this form and signing below, you confirm that you have read, understood, and agree to the following terms set by <strong>BluPrnt</strong>:
+        </p>
+
+        <ul class="consent-list">
+          <li>All materials, resources, documents, spreadsheets, presentations, and CV templates shared with you through BluPrnt are the <strong>exclusive intellectual property of BluPrnt</strong> and its creators.</li>
+          <li>You may <strong>not</strong> resell, redistribute, publish, share for commercial gain, or in any way monetize any content provided to you through this program.</li>
+          <li>All files shared are <strong>digitally tracked and watermarked</strong>. Any unauthorized distribution can and will be traced back to your registered account.</li>
+          <li>You may use the provided materials solely for your <strong>personal academic and career development</strong>.</li>
+          <li>Sharing login credentials, access links, or program materials with individuals who have not registered is strictly prohibited.</li>
+          <li>BluPrnt reserves the right to <strong>revoke access</strong> and take legal action in cases of violations of these terms.</li>
+          <li>Your personal data will be used solely for program management and mentor matching, and will not be sold to third parties.</li>
+        </ul>
+
+        <p>
+          Your participation in BluPrnt is voluntary. However, by registering, you commit to engaging respectfully with your mentor, attending agreed-upon sessions, and using the program's resources in good faith.
+        </p>
+
+        <div class="sig-wrap">
+          <label for="signature">Full Name (as Digital Signature) <span class="req">*</span></label>
+          <input type="text" id="signature" name="signature" placeholder="Type your full legal name..." required>
+          <div class="sig-date">
+            <span>Date of submission: </span>
+            <span id="sigDate" style="color:var(--gold-l); font-weight:600;"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHECKBOXES -->
+      <label class="agree-item">
+        <input type="checkbox" name="agree1" id="agree1" required>
+        <span class="agree-text">I confirm that all information I have provided in this form is accurate and truthful.</span>
+      </label>
+
+      <label class="agree-item">
+        <input type="checkbox" name="agree2" id="agree2" required>
+        <span class="agree-text">I agree that I will <strong>not</strong> resell, redistribute, or commercially exploit any materials provided to me through BluPrnt.</span>
+      </label>
+
+      <label class="agree-item">
+        <input type="checkbox" name="agree3" id="agree3" required>
+        <span class="agree-text">I acknowledge that all shared files are digitally tracked and I accept full responsibility for how I use them.</span>
+      </label>
+
+      <label class="agree-item">
+        <input type="checkbox" name="agree4" id="agree4" required>
+        <span class="agree-text">I understand that BluPrnt may revoke my access if I violate these terms, and I consent to legal action in cases of intellectual property infringement.</span>
+      </label>
+
+      <label class="agree-item">
+        <input type="checkbox" name="agree5" id="agree5" required>
+        <span class="agree-text">I have read and fully agree to the BluPrnt Terms of Use and Intellectual Property Agreement above.</span>
+      </label>
+
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-wrap">
+    <button type="submit" class="submit-btn">
+      <span>Submit My Registration</span>
+      <span class="arrow">→</span>
+    </button>
+    <div class="submit-note">
+      You'll receive a confirmation email within 48 hours. Your mentor match will be shared within 5–7 business days.
+    </div>
+  </div>
+
+</form>
+</div>
+
+<!-- FOOTER -->
+<div class="form-footer">
+  <div class="footer-logo"><span class="blu">Blu</span><span class="prnt">Prnt</span></div>
+  <p>
+    <strong>© 2025 BluPrnt. All Rights Reserved.</strong><br>
+    Student-to-Student Legal &amp; Technology Mentorship Platform<br>
+    Unauthorized reproduction or redistribution of any BluPrnt content is strictly prohibited.<br>
+    All distributed files are digitally tracked. By registering, you agree to our terms of use.
+  </p>
+</div>
+
+<script>
+  // ── DATE ───────────────────────────────────────────────────
+  const now = new Date();
+  document.getElementById('sigDate').textContent =
+    now.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+
+  // ── SCALE RATING ───────────────────────────────────────────
+  function setScale(name, val) {
+    const btns = document.querySelectorAll(`#${name}Scale .scale-btn`);
+    btns.forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.val) <= val);
+    });
+    document.getElementById(`${name}Val`).value = val;
+  }
+
+  // ── PROGRESS ───────────────────────────────────────────────
+  function updateProgress() {
+    const inputs = document.querySelectorAll('#mainForm input[required], #mainForm select[required], #mainForm textarea[required]');
+    let filled = 0;
+    inputs.forEach(inp => {
+      if (inp.type === 'radio' || inp.type === 'checkbox') {
+        const name = inp.name;
+        if (document.querySelector(`input[name="${name}"]:checked`)) filled++;
+      } else if (inp.value.trim()) filled++;
+    });
+    // Deduplicate radio/checkbox names
+    const names = new Set();
+    inputs.forEach(inp => {
+      if (inp.type === 'radio' || inp.type === 'checkbox') names.add(inp.name);
+      else names.add(inp.id || inp.name);
+    });
+    const total = names.size;
+    let uniqueFilled = 0;
+    names.forEach(n => {
+      const el = document.querySelector(`#mainForm input[name="${n}"], #mainForm select[name="${n}"], #mainForm textarea[name="${n}"]`);
+      if (!el) return;
+      if (el.type === 'radio' || el.type === 'checkbox') {
+        if (document.querySelector(`input[name="${n}"]:checked`)) uniqueFilled++;
+      } else if (el.value.trim()) uniqueFilled++;
+    });
+    const pct = Math.round((uniqueFilled / total) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  document.getElementById('mainForm').addEventListener('input', updateProgress);
+  document.getElementById('mainForm').addEventListener('change', updateProgress);
+
+  // ── APPS SCRIPT URL — الصق URL هنا بعد الـ deployment ──────
+  // خطوات الإعداد موضحة في ملف SETUP_INSTRUCTIONS.txt
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBRM_G_iQ4G7wsSQNL8uImu0iGU92CJoB8No5xLo1ezwrlWWHx9iS1DZRFoVutN8LzCg/exec";
+
+  // ── SUBMIT ─────────────────────────────────────────────────
+  document.getElementById('mainForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // ── VALIDATION ───────────────────────────────────────────
+    const required = document.querySelectorAll('#mainForm [required]');
+    let valid = true;
+
+    required.forEach(inp => {
+      if (inp.type === 'checkbox') {
+        if (!inp.checked) { valid = false; inp.closest('.agree-item').style.borderColor = '#EF4444'; }
+        else inp.closest('.agree-item').style.borderColor = '';
+      } else if (inp.type === 'radio') {
+        const grp = document.querySelectorAll(`input[name="${inp.name}"]`);
+        const checked = Array.from(grp).some(r => r.checked);
+        if (!checked) valid = false;
+      } else {
+        if (!inp.value.trim()) { valid = false; inp.style.borderColor = '#EF4444'; }
+        else inp.style.borderColor = '';
+      }
+    });
+
+    if (!valid) {
+      alert('Please complete all required fields before submitting.');
+      return;
+    }
+
+    // ── COLLECT DATA ─────────────────────────────────────────
+    const getChecked = (name) =>
+      Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+           .map(el => el.value);
+
+    const getRadio = (name) => {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : "";
+    };
+
+    const formData = {
+      fname:          document.getElementById('fname').value.trim(),
+      lname:          document.getElementById('lname').value.trim(),
+      age:            document.getElementById('age').value.trim(),
+      city:           document.getElementById('city').value,
+      email:          document.getElementById('email').value.trim(),
+      university:     document.getElementById('university').value,
+      major:          document.getElementById('major').value.trim(),
+      year:           document.getElementById('year').value,
+      track:          getRadio('track'),
+      love:           getChecked('love'),
+      good_at:        getChecked('good_at'),
+      world:          getChecked('world'),
+      environment:    getRadio('environment'),
+      career_clarity: document.getElementById('clarityVal').value,
+      goals:          document.getElementById('goals').value.trim(),
+      challenges:     document.getElementById('challenges').value.trim(),
+      mentor_gender:  getRadio('mentor_gender'),
+      comm_style:     getChecked('comm_style'),
+      frequency:      getRadio('frequency'),
+      extra:          document.getElementById('extra').value.trim(),
+      signature:      document.getElementById('signature').value.trim(),
+    };
+
+    // ── LOADING STATE ─────────────────────────────────────────
+    const btn = document.querySelector('.submit-btn');
+    btn.innerHTML = '<span>Submitting...</span><span class="arrow">⏳</span>';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    // ── SEND TO GOOGLE SHEETS ─────────────────────────────────
+    try {
+      if (APPS_SCRIPT_URL === "PASTE_YOUR_APPS_SCRIPT_URL_HERE") {
+        // Demo mode — no URL configured yet
+        throw new Error("DEMO_MODE");
+      }
+
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      showSuccess(formData.fname);
+
+    } catch (err) {
+      if (err.message === "DEMO_MODE") {
+        // Show success in demo/preview mode
+        showSuccess(formData.fname);
+      } else {
+        btn.innerHTML = '<span>Submit My Registration</span><span class="arrow">→</span>';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        alert('Something went wrong. Please try again or contact us directly.');
+        console.error(err);
+      }
+    }
+  });
+
+  function showSuccess(name) {
+    document.querySelector('.form-wrapper').innerHTML = `
+      <div style="text-align:center; padding: 80px 40px; background:white; border-radius:16px;
+                  border:1px solid rgba(37,99,235,0.15); box-shadow:0 4px 24px rgba(10,22,40,0.07);">
+        <div style="font-size:64px; margin-bottom:20px;">🎉</div>
+        <div style="font-family:'EB Garamond',serif; font-size:38px; font-weight:700;
+                    color:#0A1628; margin-bottom:14px;">
+          Welcome, ${name || 'Future Leader'}!
+        </div>
+        <div style="width:60px; height:4px; background:#F59E0B; border-radius:2px;
+                    margin:0 auto 24px;"></div>
+        <p style="font-size:15.5px; color:#475569; line-height:1.75; max-width:520px; margin:0 auto 32px;">
+          Your registration has been received and saved. ✅<br>
+          We'll review your profile and send a confirmation to your email within
+          <strong>48 hours</strong>. Your mentor match will be shared within
+          <strong>5–7 business days</strong>.
+        </p>
+        <div style="background:#0A1628; border-radius:12px; padding:22px 32px; max-width:440px; margin:0 auto;">
+          <div style="font-family:'EB Garamond',serif; font-size:20px; font-style:italic;
+                      color:#60A5FA; margin-bottom:8px;">
+            "Become the Blueprint of Your Career."
+          </div>
+          <div style="font-size:12px; color:#94A3B8;">— BluPrnt, Student Mentorship Platform</div>
+        </div>
+      </div>
+    `;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
